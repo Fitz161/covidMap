@@ -1,0 +1,106 @@
+body{
+    margin: 0;
+    background-color: rgba(10, 6, 6, 0.795);
+}
+
+#title{ /*选中id为title的块*/
+    position: absolute;
+    width: 40%; /*width，height指定自身宽高，top，right指定左上角的位置*/
+    height: 10%;
+    top: 0; /*指定位置顶格*/
+    left: 30%; /*上述表明顶格，据左边30%，自身长度40%，高度10%*/
+    color: white; /*字体颜色 */
+    font-size: 35px;
+    /* background-color: chocolate; */
+
+    /*居中*/
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 竖直居中 */
+}
+
+.num{
+    width: 25%; /*占父级元素25%的宽度，向左漂浮显示*/
+    float: left;
+    color: gold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.txt{
+    width: 25%; /*占父级元素25%的宽度，向左漂浮显示*/
+    float: left;
+    font-family: '幼圆';
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#time{
+    position: absolute;
+    /* width: 20%; */
+    height: 10%;
+    top: 5%;
+    right: 2%;
+    /* background-color: cyan; */
+    color: white;
+    font-size: 20px;
+}
+
+#c1{ /*选中id为c1的块*/
+    position: absolute;
+    width: 40%;
+    height: 30%;
+    top: 10%;
+    left: 30%;
+    color: white;
+    /* background-color: aquamarine; */
+}
+
+#c2{ /*选中id为c2的块*/
+    position: absolute;
+    width: 40%;
+    height: 60%;
+    top: 40%;
+    left: 30%;
+    /* background-color: rgb(21, 156, 180); */
+}
+
+#l1{
+    position: absolute;
+    width: 30%;
+    height: 45%;
+    top: 10%;
+    left: 0;
+    /* background-color: rgb(8, 141, 101); */
+}
+
+#l2{
+    position: absolute;
+    width: 30%;
+    height: 45%;
+    top: 55%;
+    left: 0;
+    /* background-color: rgb(187, 58, 129); */
+}
+
+#r1{
+    position: absolute;
+    width: 30%;
+    height: 45%;
+    top: 10%;
+    right: 0;
+    /* background-color: rgb(233, 213, 32); */
+}
+
+#r2{
+    position: absolute;
+    width: 30%;
+    height: 45%;
+    top: 55%;
+    right: 0;
+    /* background-color: rgb(111, 20, 196); */
+}
