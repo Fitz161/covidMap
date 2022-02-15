@@ -1,0 +1,29 @@
+CREATE DATABASE covid;
+
+USE covid;
+
+CREATE TABLE history (
+ds datetime NOT NULL,
+confirm int(11) DEFAULT NULL,
+confirm_add int(11) DEFAULT NULL,
+suspect int(11) DEFAULT NULL,
+suspect_add int(11) DEFAULT NULL,
+heal int(11) DEFAULT NULL,
+heal_add int(11) DEFAULT NULL,
+dead int(11) DEFAULT NULL,
+dead_add int(11) DEFAULT NULL,
+PRIMARY KEY(ds) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE details(
+id int(11) NOT NULL AUTO_INCREMENT,
+update_time datetime DEFAULT NULL,
+province VARCHAR(50) DEFAULT NULL,
+city VARCHAR(50) DEFAULT NULL,
+confirm int(11) DEFAULT NULL,
+confirm_add int(11) DEFAULT NULL,
+heal int(11) DEFAULT NULL,
+dead int(11) DEFAULT NULL,
+PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
