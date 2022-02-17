@@ -12,3 +12,15 @@ function getC1Data() {
   })
 }
 getC1Data();
+
+function getC2Data() {
+    $.ajax({
+        url: '/c2',
+        success: function (jsonData) {
+            console.log(jsonData);
+            mapOption.series[0].data = jsonData.keyData;
+            echartsMap.setOption(mapOption);
+        }, error: console.error('请求c2数据失败')
+    })
+}
+getC2Data();

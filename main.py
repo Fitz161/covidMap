@@ -19,6 +19,13 @@ def c1_handle():
         'dead': dead
     })
 
+@app.route('/c2')
+def c2_handle():
+    result = []
+    for item in get_c2_data():
+        result.append({'name': item[0], 'value': item[1]})
+    return jsonify({'keyData': result})
+
 
 
 if __name__ == '__main__':
