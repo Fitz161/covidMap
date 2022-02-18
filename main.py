@@ -27,6 +27,23 @@ def c2_handle():
     return jsonify({'keyData': result})
 
 
-
+@app.route('/l1')
+def l1_handle():
+    data:tuple = get_l1_data()
+    day, confirm, suspect, heal, dead = [], [], [], [], []
+    for da, co, su, he, de in data:
+        day.append(da.strftime('%m-%d')) #da为datetime类型
+        confirm.append(co)
+        suspect.append(su)
+        heal.append(he)
+        dead.append(de)
+    return jsonify({
+        'day': day,
+        'confirm': confirm,
+        'suspect': suspect,
+        'heal': heal,
+        'dead': dead
+    })
+        
 if __name__ == '__main__':
     app.run(port=PORT)

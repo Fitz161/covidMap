@@ -24,3 +24,19 @@ function getC2Data() {
     })
 }
 getC2Data();
+
+function getL1Data() {
+    $.ajax({
+        url: '/l1',
+        success: function (data){
+            console.log(data)
+            left1Option.xAxis[0].data = data.day;
+            left1Option.series[0].data = data.confirm;
+            left1Option.series[1].data = data.suspect;
+            left1Option.series[2].data = data.heal;
+            left1Option.series[3].data = data.dead;
+            ecLeft1.setOption(left1Option);
+        }, error: console.error('请求l1数据失败')
+    })
+}
+getL1Data();
