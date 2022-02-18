@@ -35,4 +35,24 @@ def get_c1_data()->tuple:
     #按时间字段倒叙排序，选中第一个（即时间最新的），然后执行前面的sum操作
     return query(sql)[0]
 
+def get_c2_data():
+    sql = """
+    select province,sum(confirm_add) from details
+    where update_time=(select update_time from details order by update_time desc limit 1)
+    group by province
+    """
+    # group by province将province字段相同的条目分成一组，
+    # select province,sum(confirm) 选出每一组中的province字段，和每一组中confirm字段sum后的数据
+    return query(sql)
 
+def get_l1_data():
+    sql = """
+    select ds,confirm,suspect,heal,dead from history
+    """
+    return query(sql)
+
+def get_l2_data():
+    sql = """
+    select ds,confirm_add,suspect_add from history
+    """
+    return query(sql)
