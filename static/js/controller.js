@@ -40,3 +40,17 @@ function getL1Data() {
     })
 }
 getL1Data();
+
+function getL2Data() {
+    $.ajax({
+        url: '/l2',
+        success: function (data){
+            console.log(data)
+            left2Option.xAxis[0].data = data.day;
+            left2Option.series[0].data = data.confirm_add;
+            left2Option.series[1].data = data.suspect_add;
+            ecLeft2.setOption(left2Option);
+        }, error: console.error('请求l2数据失败')
+    })
+}
+getL2Data();
