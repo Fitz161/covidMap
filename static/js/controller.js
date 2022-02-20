@@ -67,3 +67,15 @@ function getR1Data() {
     })
 }
 getR1Data();
+
+function getR2Data() {
+    $.ajax({
+        url: '/r2',
+        success: function (data){
+            console.log(data);
+            wordCloudOption.series[0].data = data.keywords;
+            ecWordCloud.setOption(wordCloudOption);
+        }, error: console.error('请求r2数据失败')
+    })
+}
+getR2Data();

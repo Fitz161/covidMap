@@ -72,5 +72,30 @@ def r1_handle():
         'confirm_add': confirm_add
     })
 
+@app.route('/r2')
+def r2_handle():
+    data = get_r2_data()
+    result = []
+    for index, item in enumerate(data):
+        d = string.digits # '0123456789'
+        hot_content = item[0].rstrip(d) #去除最后的数字
+        hot_value = item[0][len(hot_content):]
+        keywords = extract_tags(hot_content) # jieba提取关键字
+        for word in keywords:
+            if not word.isdigit():
+                flag = False
+                for char in word: #判断关键字中是否有数字并剔除
+                    if char.isdigit():
+                        flag = True
+                if flag:
+                    continue
+                result.append({
+                    'name': word,
+                    'value': 300 + (30 - int(index)) * 5 #构造权重
+                })
+    return jsonify({
+        'keywords': result
+    })
+
 if __name__ == '__main__':
     app.run(port=PORT)

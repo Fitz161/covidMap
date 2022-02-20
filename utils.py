@@ -85,3 +85,9 @@ def get_r1_data():
     # 获取新增确诊最多的省份/地区
     return query(sql2)
 
+def get_r2_data():
+    sql = 'select content from ' \
+          '(select id,content from hotsearch order by id desc limit 30) as a ' \
+          'order by id asc'
+    #先取最后三十个（最新数据），再逆序输出（使热度高的在前）
+    return query(sql)
