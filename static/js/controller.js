@@ -54,3 +54,16 @@ function getL2Data() {
     })
 }
 getL2Data();
+
+function getR1Data() {
+    $.ajax({
+        url: '/r1',
+        success: function (data){
+            console.log(data)
+            right1Option.xAxis[0].data = data.province;
+            right1Option.series[0].data = data.confirm_add;
+            ecRight1.setOption(right1Option);
+        }, error: console.error('请求r1数据失败')
+    })
+}
+getR1Data();

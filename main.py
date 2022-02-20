@@ -59,6 +59,18 @@ def l2_handle():
         'confirm_add': confirm_add,
         'suspect_add': suspect_add,
     })
-        
+
+@app.route('/r1')
+def r1_handle():
+    data = get_r1_data()
+    province, confirm_add = [], []
+    for pro, con in data:
+        province.append(pro)
+        confirm_add.append(con)
+    return jsonify({
+        'province': province,
+        'confirm_add': confirm_add
+    })
+
 if __name__ == '__main__':
     app.run(port=PORT)
