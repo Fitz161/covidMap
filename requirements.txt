@@ -1,0 +1,5 @@
+simplejson
+flask
+requests
+selenium
+bs4
