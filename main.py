@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+import threading
 
 from utils import *
 
@@ -97,5 +98,22 @@ def r2_handle():
         'keywords': result
     })
 
+def cron_task():
+    from datetime import datetime
+    from time import sleep
+    from os import popen
+    print('定时任务开启，每6小时自动更新数据')
+    while True:
+        now = datetime.now()
+        if  (now.hour % 6) == 0 and now.minute == 0 and now.second == 0:
+            task = popen('python spider.py')
+            sleep(10)
+            result = task.read()
+            print(result)
+            task.close()
+            sleep(60*60*6 - 100)
+        sleep(0.8)
+
 if __name__ == '__main__':
+    threading.Thread(target=cron_task).start()
     app.run(port=PORT)
