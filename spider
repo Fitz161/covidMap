@@ -4,6 +4,8 @@ import traceback
 import requests
 import json
 
+from selenium.webdriver import Chrome, ChromeOptions
+
 
 def get_tencent_data():
     header = {'User-Agent':
@@ -116,12 +118,43 @@ def update_details(data:list):
             cursor.close()
 
 
-if __name == '__main__':
-    db = pymysql.connect(host='localhost', user='root', passwd='', database='covid')
-    data = get_tecncent_data()
-    print(data)
-    # insert_history(data['history'])
-    update_history(data['history'])
-    update_details(data['details'])
-    db.close()
+def getBaiduData():
+    option = ChromeOptions()
+    option.add_argument('--headless')  # 隐藏浏览器
+    option.add_argument('--no-sandbox')  # linux下需要添加
+
+    browser = Chrome(options=option, executable_path='./chromedriver')
+    url = 'https://top.baidu.com/board?tab=realtime'
+    browser.get(url)
+
+    xpath = '//*[@id="sanRoot"]/main/div[2]/div/div[2]/div/div[2]/a/div[1]'
+    elements = browser.find_elements_by_xpath(xpath)
+    return elements
+
+def updateHotSearch():
+    cursor = None
+    try:
+        content = getBaiduData()
+        print(f'{time.asctime()} 开始更新热搜数据')
+        cursor = db.cursor()
+        sql = 'insert into hotsearch (dt,content) values(%s,%s)'
+        ts = time.strftime('%Y-%m-%d %X')
+        for line in content:
+            cursor.execute(sql, (ts, line))
+        db.commit()
+        print(f'{time.asctime()} 热搜数据更新完毕')
+    except:
+        traceback.print_exc()
+    finally:
+        if cursor:
+            cursor.close()
+
+
+db = pymysql.connect(host='localhost', user='root', passwd='', database='covid')
+data = get_tecncent_data()
+# insert_history(data['history'])
+update_history(data['history'])
+update_details(data['details'])
+updateHotSearch()
+db.close()
 
