@@ -1,8 +1,9 @@
 import pymysql
 
+from config import *
 
 def get_database():
-    db = pymysql.connect(host='localhost', user='root', passwd='123123123a', database='covid')
+    db = pymysql.connect(host=HOST, user=USER, passwd=PASSWORD, database=DATABASE)
     if db.open:
         cursor = db.cursor()
         return db, cursor

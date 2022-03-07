@@ -4,7 +4,6 @@ import threading
 from utils import *
 
 app = Flask(__name__)
-PORT = 8888
 
 @app.route('/') #设置路由
 def handle():
@@ -102,10 +101,10 @@ def cron_task():
     from datetime import datetime
     from time import sleep
     from os import popen
-    print('定时任务开启，每6小时自动更新数据')
+    print(f'定时任务开启，每{PAUSE}小时自动更新数据')
     while True:
         now = datetime.now()
-        if  (now.hour % 6) == 0 and now.minute == 0 and now.second == 0:
+        if  (now.hour % PAUSE) == 0 and now.minute == 0 and now.second == 0:
             task = popen('python spider.py')
             sleep(10)
             result = task.read()

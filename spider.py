@@ -6,6 +6,8 @@ import json
 
 from selenium.webdriver import Chrome, ChromeOptions
 
+from config import *
+
 
 def get_tencent_data():
     header = {'User-Agent':
@@ -150,7 +152,7 @@ def updateHotSearch():
             cursor.close()
 
 
-db = pymysql.connect(host='localhost', user='root', passwd='', database='covid')
+db = pymysql.connect(host=HOST, user=USER, passwd=PASSWORD, database=DATABASE)
 data = get_tecncent_data()
 # insert_history(data['history'])
 update_history(data['history'])
