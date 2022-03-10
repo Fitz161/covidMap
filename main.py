@@ -1,4 +1,6 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
+from jieba.analyse import extract_tags
+import string
 import threading
 
 from utils import *
