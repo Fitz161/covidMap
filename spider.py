@@ -125,7 +125,7 @@ def getBaiduData():
     option.add_argument('--headless')  # 隐藏浏览器
     option.add_argument('--no-sandbox')  # linux下需要添加
 
-    browser = Chrome(options=option, executable_path='./chromedriver')
+    browser = Chrome(options=option)
     url = 'https://top.baidu.com/board?tab=realtime'
     browser.get(url)
 
@@ -153,7 +153,7 @@ def updateHotSearch():
 
 
 db = pymysql.connect(host=HOST, user=USER, passwd=PASSWORD, database=DATABASE)
-data = get_tecncent_data()
+data = get_tencent_data()
 # insert_history(data['history'])
 update_history(data['history'])
 update_details(data['details'])
