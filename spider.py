@@ -131,7 +131,9 @@ def getBaiduData():
 
     xpath = '//*[@id="sanRoot"]/main/div[2]/div/div[2]/div/div[2]/a/div[1]'
     elements = browser.find_elements_by_xpath(xpath)
-    return elements
+    content = [element.text for element in elements]
+    browser.close()
+    return content
 
 def updateHotSearch():
     cursor = None
