@@ -13,7 +13,7 @@ def get_tencent_data():
     header = {'User-Agent':
                   r'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 Edg/97.0.1072.62'}
     url = 'https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5'
-    url2 = 'https://api.inews.qq.com/newsqa/v1/query/inner/publish/modules/list?modules=chinaDayList,chinaDayAddList'
+    url2 = 'https://api.inews.qq.com/newsqa/v1/query/inner/publish/modules/list?modules=chinaDayList,chinaDayAddList,diseaseh5Shelf,provinceCompare'
     res = requests.get(url, headers=header).json()
     res2 = requests.get(url2, headers=header).json()
 
@@ -34,6 +34,8 @@ def get_tencent_data():
         ds = i['y'] + '.' + i['date']
         tup = time.strptime(ds, '%Y.%m.%d')
         ds = time.strftime('%Y-%m-%d', tup)
+        if ds not in history.keys():
+            continue
         history[ds].update({'confirm_add': i['confirm'],
                             'suspect_add': i['suspect'],
                             'heal_add': i['heal'], 'dead_add': i['dead']})
@@ -78,6 +80,8 @@ def update_history(data:dict):
         cursor = db.cursor()
         sql = 'select confirm from history where ds=%s'
         for k, v in data.items():
+            if len(v.keys()) != 8:
+                continue
             if not cursor.execute(sql, k):
                 sql_query = f"insert into history values('{k}',{v['confirm']},{v['confirm_add']}," \
                             f"{v['suspect']},{v['suspect_add']},{v['heal']},{v['heal_add']}," \
@@ -130,7 +134,7 @@ def getBaiduData():
     browser.get(url)
 
     xpath = '//*[@id="sanRoot"]/main/div[2]/div/div[2]/div/div[2]/a/div[1]'
-    elements = browser.find_elements_by_xpath(xpath)
+    elements = browser.find_elements(by='xpath', value=xpath)
     content = [element.text for element in elements]
     browser.close()
     return content
