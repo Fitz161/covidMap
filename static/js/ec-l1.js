@@ -27,7 +27,7 @@ left1Option = {
         }
     },
     legend: {
-        data: ['累计确诊', '新增疑似', '累计治愈', '累计死亡'],
+        data: ['累计确诊', '现有疑似', '累计治愈', '累计死亡'],
         left: 'right',
         textStyle: {
             color: 'white'
@@ -82,7 +82,7 @@ left1Option = {
             data: []
         },
         {
-            name: '新增确诊',
+            name: '现有疑似',
             type: 'line',
             smooth: true,
             data: []

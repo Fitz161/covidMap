@@ -3,3 +3,5 @@ flask
 requests
 selenium
 bs4
+jieba
+pymysql
