@@ -117,4 +117,5 @@ def cron_task():
 
 if __name__ == '__main__':
     threading.Thread(target=cron_task).start()
+    # host='0.0.0.0' 用于服务器部署时允许所有IP访问，仅需本地运行时需删去或修改值为 127.0.0.1
     app.run(host='0.0.0.0', port=PORT)
