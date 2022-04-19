@@ -25,7 +25,7 @@
 - 安装 Google Chrome 和 chromedriver
 - 克隆项目到本地 `git clone https://gitee.com/fitz161/covidMap.git`，或者下载源码压缩包并解压
 - 切换到项目所在目录 `cd covidMap/`
-- 安装依赖的包 `pip insatll -r requirments.txt -i https://pypi.douban.com/simple`
+- 安装依赖的包 `pip insatll -r requirements.txt -i https://pypi.douban.com/simple`
 - 打开config.py文件配置数据库账号
 - 手动更新数据 `python spider.py`
 - 开启服务 `python main.py`
