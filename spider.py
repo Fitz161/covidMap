@@ -12,17 +12,13 @@ from config import *
 def get_tencent_data():
     header = {'User-Agent':
                   r'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36 Edg/97.0.1072.62'}
-    url = 'https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5'
-    url2 = 'https://api.inews.qq.com/newsqa/v1/query/inner/publish/modules/list?modules=chinaDayList,chinaDayAddList,diseaseh5Shelf,provinceCompare'
+    url = 'https://api.inews.qq.com/newsqa/v1/query/inner/publish/modules/list?modules=chinaDayList,chinaDayAddList,diseaseh5Shelf,provinceCompare,diseaseh5Shelf'
     res = requests.get(url, headers=header).json()
-    res2 = requests.get(url2, headers=header).json()
 
-    data = json.loads(res['data'])
-    data2 = res2['data']
+    data = res['data']
 
     history = {}
-
-    for i in data2['chinaDayList']:
+    for i in data['chinaDayList']:
         ds = i['y'] + '.' + i['date']
         tup = time.strptime(ds, '%Y.%m.%d')
         ds = time.strftime('%Y-%m-%d', tup)
@@ -30,7 +26,7 @@ def get_tencent_data():
                        'suspect': i['suspect'],
                        'heal': i['heal'], 'dead': i['dead']}
 
-    for i in data2['chinaDayAddList']:
+    for i in data['chinaDayAddList']:
         ds = i['y'] + '.' + i['date']
         tup = time.strptime(ds, '%Y.%m.%d')
         ds = time.strftime('%Y-%m-%d', tup)
@@ -41,8 +37,8 @@ def get_tencent_data():
                             'heal_add': i['heal'], 'dead_add': i['dead']})
 
     details = []
-    update_time = data['lastUpdateTime']
-    data_province = data['areaTree'][0]['children']
+    update_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+    data_province = data['diseaseh5Shelf']['areaTree'][0]['children']
     for pro_infos in data_province:
         province = pro_infos['name']
         for city_infos in pro_infos['children']:
