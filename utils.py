@@ -54,7 +54,7 @@ def get_l1_data():
 
 def get_l2_data():
     sql = """
-    select ds,confirm_add,suspect_add from history
+    select ds,confirm_add,suspect_add,heal_add,dead_add from history
     """
     return query(sql)
 

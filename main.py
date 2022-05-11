@@ -51,15 +51,19 @@ def l1_handle():
 @app.route('/l2')
 def l2_handle():
     data:tuple = get_l2_data()
-    day, confirm_add, suspect_add = [], [], []
-    for da, ca, sa in data:
-        day.append(da.strftime('%m-%d')) #da为datetime类型
+    date, confirm_add, suspect_add, head_add, dead_add = [], [], [], [], []
+    for day, ca, sa, ha, da in data:
+        date.append(day.strftime('%m-%d')) #date为datetime类型
         confirm_add.append(ca)
         suspect_add.append(sa)
+        head_add.append(ha)
+        dead_add.append(da)
     return jsonify({
-        'day': day,
+        'day': date,
         'confirm_add': confirm_add,
         'suspect_add': suspect_add,
+        'heal_add': head_add,
+        'dead_add': dead_add
     })
 
 @app.route('/r1')

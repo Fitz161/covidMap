@@ -49,6 +49,8 @@ function getL2Data() {
             left2Option.xAxis[0].data = data.day;
             left2Option.series[0].data = data.confirm_add;
             left2Option.series[1].data = data.suspect_add;
+            left2Option.series[2].data = data.heal_add;
+            left2Option.series[3].data = data.dead_add;
             ecLeft2.setOption(left2Option);
         }, error: console.error('请求l2数据失败')
     })

@@ -22,7 +22,7 @@ left2Option = {
         }
     },
     legend: {
-        data: ['新增确诊', '新增疑似'],
+        data: ['新增确诊', '新增疑似', '新增治愈', '新增死亡'],
         left: 'right',
         textStyle: {
             color: 'white'
@@ -78,6 +78,18 @@ left2Option = {
         },
         {
             name: '新增疑似',
+            type: 'line',
+            //smooth: true,
+            data: []
+        },
+        {
+            name: '新增治愈',
+            type: 'line',
+            //smooth: true,
+            data: []
+        },
+        {
+            name: '新增死亡',
             type: 'line',
             //smooth: true,
             data: []
