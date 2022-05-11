@@ -34,6 +34,23 @@ right1Option = {
             type: 'value',
             axisLabel: {
                 color: 'white',
+                formatter: function (value) {
+                    if (value >= 1000) {
+                        value = value / 1000 + 'k';
+                    }
+                    return value;
+                }
+            },
+            axisLine: {
+                show: true
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#17273B',
+                    width: 1,
+                    type: 'solid'
+                }
             }
         }
     ],
