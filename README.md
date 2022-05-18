@@ -20,6 +20,7 @@
 ### 安装使用
 </div>
 
+- [ Linux服务器部署教程 ](docs/LINUX.md)
 - 安装python3.6以上版本和mysql数据库(推荐5.7版本)
 - 按照 `database.txt` 中的内容配置好mysql数据库
 - 安装 Google Chrome 和 chromedriver
