@@ -1,4 +1,5 @@
 # Linux服务器部署疫情地图
+**若图片无法正常显示，可从 [此处](https://zhuanlan.zhihu.com/p/516501658) 查看教程**
 
 本文演示环境为ubuntu20.04
 ## 更新apt源
