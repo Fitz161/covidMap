@@ -36,6 +36,6 @@
 ### 注意事项
 </div>
 
-- 项目中chromedriver适用于Google Chrome98版本，其他版本请前往 [此处](https://chromedriver.storage.googleapis.com/index.html) 下载并复制到项目所在目录。
+- Chrome浏览器在 [此处](https://www.google.cn/chrome/index.html) 下载安装，在设置中查看Chrome版本，并前往 [此处](https://chromedriver.storage.googleapis.com/index.html) 下载与Chrome主版本一致的chromedriver，并复制到项目所在目录。
 - 仅需本地部署服务时(或本地运行时遇到无法访问此网站)，需删去`main.py`最后一行的`host`参数
-- 项目启动前需手动更新一次数据，之后程序会每隔6小时自动更新数据，可在`config.py`中修改
+- 项目启动前需手动更新一次数据，之后程序会每隔6小时自动更新数据(程序需持续运行)，可在`config.py`中修改
