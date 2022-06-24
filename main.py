@@ -1,5 +1,6 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, send_from_directory
 from jieba.analyse import extract_tags
+import os
 import string
 import threading
 
@@ -9,7 +10,12 @@ app = Flask(__name__)
 
 @app.route('/') #设置路由
 def handle():
-    return  render_template('main.html')
+    return render_template('main.html')
+
+@app.route('/favicon.ico') #设置icon
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'railgun.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/c1')
 def c1_handle():
@@ -27,7 +33,6 @@ def c2_handle():
     for item in get_c2_data():
         result.append({'name': item[0], 'value': item[1]})
     return jsonify({'keyData': result})
-
 
 @app.route('/l1')
 def l1_handle():
@@ -47,22 +52,21 @@ def l1_handle():
         'dead': dead
     })
 
-
 @app.route('/l2')
 def l2_handle():
     data:tuple = get_l2_data()
-    date, confirm_add, suspect_add, head_add, dead_add = [], [], [], [], []
+    date, confirm_add, suspect_add, heal_add, dead_add = [], [], [], [], []
     for day, ca, sa, ha, da in data:
         date.append(day.strftime('%m-%d')) #date为datetime类型
         confirm_add.append(ca)
         suspect_add.append(sa)
-        head_add.append(ha)
+        heal_add.append(ha)
         dead_add.append(da)
     return jsonify({
         'day': date,
         'confirm_add': confirm_add,
         'suspect_add': suspect_add,
-        'heal_add': head_add,
+        'heal_add': heal_add,
         'dead_add': dead_add
     })
 
