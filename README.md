@@ -1,3 +1,5 @@
+
+
 <div align="center">
 
 # 疫情地图
@@ -37,5 +39,5 @@
 </div>
 
 - Chrome浏览器在 [此处](https://www.google.cn/chrome/index.html) 下载安装，在设置中查看Chrome版本，并前往 [此处](https://chromedriver.storage.googleapis.com/index.html) 下载与Chrome主版本一致的chromedriver，并复制到项目所在目录。
-- 仅需本地部署服务时(或本地运行时遇到无法访问此网站)，需删去`main.py`最后一行的`host`参数
+- 仅需本地部署服务时(或本地运行时遇到无法访问此网站)，需删去或修改`main.py`最后一行的`host`参数为`127.0.0.1`
 - 项目启动前需手动更新一次数据，之后程序会每隔6小时自动更新数据(程序需持续运行)，可在`config.py`中修改
